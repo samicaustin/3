@@ -25,6 +25,11 @@ router.get('/new', (req, res) => {
 // CREATE ROUTE
 router.post('/', async (req, res) => {
     try {
+        if (req.body.approved === 'on') {
+            req.body.approved  = true;
+        } else {
+            req.body.approved  = false;
+        }
         await Media.create(req.body);
         res.redirect('/secret');
     } catch(err){
@@ -47,9 +52,15 @@ router.get('/:id/edit', async (req,res) => {
 // UPDATE ROUTE
 router.put('/:id', async (req, res) => {
   try {
+    if (req.body.approved === 'on') {
+        req.body.approved  = true;
+    } else {
+        req.body.approved  = false;
+    }
     const mediaToEdit = await Media.findByIdAndUpdate(req.params.id, req.body, {new: true});
+   
     mediaToEdit.save();
-    console.log(mediaToEdit);
+    console.log(mediaToEdit, "UPDATED!");
     res.redirect('/secret');
   } catch (err) {
       console.log(err)

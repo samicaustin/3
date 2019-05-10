@@ -11,8 +11,14 @@
 <h1>EDIT</h1>
 
     <form action="/secret/<%=media._id%>?_method=PUT" method="POST">
+        APPROVED: <input type="checkbox" name="approved" value="<%=media.approved%>"/>
         TITLE: <input type="text" name="title" value="<%=media.title%>"/>
         TYPE: <input type="text" name="type" value="<%=media.type%>"/>
+        CREATOR: <input type="text" name="creator" value="<%=media.creator%>"/>
+        DESCRIPTION: <input type="text" name="description" value="<%=media.description%>"/>
+        IMAGE URL: <input type="text" name="imageUrl" value="<%=media.imageUrl%>"/>
+
+
         <input type="submit"/>
     </form>
     

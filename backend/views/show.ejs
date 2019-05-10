@@ -14,9 +14,17 @@
     <% for(i = 0; i < media.length; i++){%>
 
         <li>
+            APPROVED: <b><%=media[i].approved%></b><br>
+
             TITLE: <b><%=media[i].title%></b><br>
 
             TYPE: <b><%=media[i].type%></b><br>
+
+            CREATOR: <b><%=media[i].creator%></b><br>
+
+            DESCRIPTION: <b><%=media[i].description%></b><br>
+
+            IMAGE: <img src="<%=media[i].type%>"/><br>
 
             <form action="/secret/<%=media[i]._id%>/edit" method="get">
                 <button type="submit">Edit</button>
