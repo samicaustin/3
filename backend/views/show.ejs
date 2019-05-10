@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SECRET PAGE</title>
+</head>
+<body>
+
+<h1>SHOW</h1>
+
+<ul>
+    <% for(i = 0; i < media.length; i++){%>
+
+        <li>
+            TITLE: <b><%=media.title%></b><br>
+            TYPE: <b><%=media.type%></b>!
+        </li>
+
+    <% } %>
+</ul>
+
+
+<p>
+You should check out <b><%=media.title%></b>; it's an awesome <b><%=media.type%></b>!
+</p>
+    
+</body>
+</html>
