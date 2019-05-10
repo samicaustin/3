@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Media = require('./mediaModel');
 
+
 // SHOW ROUTE
 router.get('/', async (req, res) => {
     try {
@@ -29,36 +30,42 @@ router.post('/', async (req, res) => {
     } catch(err){
         console.log(err)
     }
-})
+});
 
 // EDIT ROUTE
 router.get('/:id/edit', async (req,res) => {
     try {
-        res.render('edit.ejs');
+        const editMedia = await Media.findById(req.params.id);
+        res.render('edit.ejs', {
+            media: editMedia
+        });
     } catch (err) {
         console.log(err)
     }
-  })
+});
 
 // UPDATE ROUTE
-router.put('/:id', async (req,res) => {
+router.put('/:id', async (req, res) => {
   try {
-    const mediaToEdit = await Media.findByIdAndUpdate({});
-
+    const mediaToEdit = await Media.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    mediaToEdit.save();
+    console.log(mediaToEdit);
     res.redirect('/secret');
   } catch (err) {
       console.log(err)
   }
-})
+});
 
 // DELETE ROUTE
 router.delete('/:id', async (req, res) => {
     try {
-        const mediaToDelete = await Media.findByIdAndDelete({});
+        console.log(req.params.id);
+        const mediaToDelete = await Media.findByIdAndRemove(req.params.id);
+        console.log(mediaToDelete);
         res.redirect('/secret');
     } catch(err) {
         console.log(err)
     }
-})
+});
 
 module.exports = router;

@@ -10,9 +10,9 @@
 
 <h1>EDIT</h1>
 
-    <form>
-        TITLE: <input type="text" name="title"/>
-        TYPE: <input type="text" name="type"/>
+    <form action="/secret/<%=media._id%>?_method=PUT" method="POST">
+        TITLE: <input type="text" name="title" value="<%=media.title%>"/>
+        TYPE: <input type="text" name="type" value="<%=media.type%>"/>
         <input type="submit"/>
     </form>
     
