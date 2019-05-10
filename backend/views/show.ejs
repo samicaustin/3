@@ -14,17 +14,21 @@
     <% for(i = 0; i < media.length; i++){%>
 
         <li>
-            TITLE: <b><%=media.title%></b><br>
-            TYPE: <b><%=media.type%></b>!
+            TITLE: <b><%=media[i].title%></b><br>
+            
+            TYPE: <b><%=media[i].type%></b><br>
+
+            <form action="/secret/<%=media[i]._id%>/edit" method="get">
+                <button type="submit">Edit</button>
+            </form>
+
+             <form action="/secret/<%=media[i]._id%>/?_method=DELETE" method="post">
+                <button type="submit">Delete</button>
+            </form>
         </li>
 
     <% } %>
 </ul>
-
-
-<p>
-You should check out <b><%=media.title%></b>; it's an awesome <b><%=media.type%></b>!
-</p>
     
 </body>
 </html>
