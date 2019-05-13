@@ -10,14 +10,19 @@ class MediaIndex extends Component {
         }
     }
 
-    // async getAllMedia(){
-    //     const media = await fetch(`${process.env.REACT_APP_BACKEND_ADDRESS}/api/v1/media`)
-    //     const mediaJSON = await media.json();
-    //     console.log(mediaJSON);
-    //     this.setState({
-    //         media: mediaJSON
-    //     })
-    // };
+    componentDidMount = () => {
+        this.getAllMedia();
+    }
+
+    async getAllMedia(){
+        console.log(process.env.REACT_APP_BACKEND, 'this is the special var');
+        const media = await fetch(`${process.env.REACT_APP_BACKEND}/media`);
+        const mediaJSON = await media.json();
+        console.log(mediaJSON);
+        this.setState({
+            media: mediaJSON
+        })
+    };
 
 
 

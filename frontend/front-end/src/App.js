@@ -1,6 +1,5 @@
 import React from 'react';
 import Home from './Home/Home';
-import MediaIndex from './MediaIndex/MediaIndex';
 import './App.css';
 
 function App() {
