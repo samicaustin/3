@@ -30,7 +30,10 @@ router.post('/', async (req, res) => {
         } else {
             req.body.approved  = false;
         }
-        await Media.create(req.body);
+        const newMedia = await Media.create(req.body);
+
+        console.log(newMedia);
+
         res.redirect('/secret');
     } catch(err){
         console.log(err)
@@ -60,6 +63,9 @@ router.put('/:id', async (req, res) => {
     const mediaToEdit = await Media.findByIdAndUpdate(req.params.id, req.body, {new: true});
    
     mediaToEdit.save();
+
+
+
     console.log(mediaToEdit, "UPDATED!");
     res.redirect('/secret');
   } catch (err) {
