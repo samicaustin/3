@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
             data: foundAllMedia
         });
     } catch (err) {
-        console.log(`get route hit`)
+        console.log(err)
     }
 });
 
@@ -27,12 +27,13 @@ router.get('/:id', async (req, res) => {
             data: foundOneMedia
         });
     } catch (err) {
-        console.log(`get route hit`)
+        console.log(err)
     }
 });
 
 // CREATE ROUTE
 router.post('/', async (req, res) => {
+    console.log(1, req.body);
     try {
         if (req.body.approved === 'on') {
             req.body.approved  = true;
@@ -60,7 +61,6 @@ router.put('/:id', async (req, res) => {
     const mediaToEdit = await Media.findByIdAndUpdate(req.params.id, req.body, {new: true});
    
     mediaToEdit.save();
-
     res.json({
         status: 200,
         data: mediaToEdit

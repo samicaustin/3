@@ -14,17 +14,17 @@ router.get('/', async (req, res) => {
     }
 });
 
-// // SHOW ROUTE
-// router.get('/:id', async (req, res) => {
-//     try {
-//         const foundOneMedia = await Media.findById(req.params.id);
-//         res.render('showone.ejs', {
-//             media: foundOneMedia
-//         })
-//     } catch (err) {
-//         console.log(`get route hit`)
-//     }
-// });
+// SHOW ROUTE
+router.get('/:id', async (req, res) => {
+    try {
+        const foundOneMedia = await Media.findById(req.params.id);
+        res.render('showone.ejs', {
+            media: foundOneMedia
+        })
+    } catch (err) {
+        console.log(err)
+    }
+});
 
 // NEW ROUTE
 router.get('/new', (req, res) => {

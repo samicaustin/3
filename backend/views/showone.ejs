@@ -10,23 +10,23 @@
 
 <h1>SHOW ONE</h1>
 
-            APPROVED: <b><%=media[i].approved%></b><br>
+            APPROVED: <b><%=media.approved%></b><br>
 
-            TITLE: <b><%=media[i].title%></b><br>
+            TITLE: <b><%=media.title%></b><br>
 
-            TYPE: <b><%=media[i].type%></b><br>
+            TYPE: <b><%=media.type%></b><br>
 
-            CREATOR: <b><%=media[i].creator%></b><br>
+            CREATOR: <b><%=media.creator%></b><br>
 
-            DESCRIPTION: <b><%=media[i].description%></b><br>
+            DESCRIPTION: <b><%=media.description%></b><br>
 
-            IMAGE: <img src="<%=media[i].type%>"/><br>
+            IMAGE: <img src="<%=media.type%>"/><br>
 
-            <form action="/admin/<%=media[i]._id%>/edit" method="get">
+            <form action="/admin/<%=media._id%>/edit" method="get">
                 <button type="submit">Edit</button>
             </form>
 
-             <form action="/admin/<%=media[i]._id%>?_method=DELETE" method="post">
+             <form action="/admin/<%=media._id%>?_method=DELETE" method="post">
                 <button type="submit">Delete</button>
             </form>
 

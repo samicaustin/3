@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-
+import NewMediaForm from '../NewMediaForm/NewMediaForm'
 import '../App.css';
+
+
+// MEDIA INDEX COMPONENT
+// Fetches media from backend and displays it
+// Needs to have search/filter capability at some point too
+// Where the ROUTES will live
 
 class MediaIndex extends Component {
     constructor(props){
@@ -34,6 +40,26 @@ class MediaIndex extends Component {
         }
     };
 
+    handleSubmit = async (formData) => {
+        console.log(2,JSON.stringify(formData));
+        const newMedia = await fetch('http://localhost:3000/media', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        const parsedResponse = await newMedia.json();
+        if (newMedia.status === 200){
+            this.setState({
+                media: [...this.state.media, parsedResponse]
+            })
+        }
+        console.log(this.state.media);
+    }
+
+
+
     render(){
         const mediaList = this.state.media.map((item) => {
                 return (<li key={item._id}>
@@ -47,11 +73,20 @@ class MediaIndex extends Component {
         
         return (
             <div className="App">
-              
+
               <h1>Recommendations for You:</h1>
+
                     <ul>
                         {mediaList}
                     </ul>
+
+                    <hr></hr>
+  
+                    <p>Do you have some excellent queer content to reccommend? 
+                    Contribute to the collection by filling out the form below</p> 
+
+                    <NewMediaForm handleSubmit = {this.handleSubmit}/>
+
             </div>
           );
     }

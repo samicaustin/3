@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import '../App.css';
-import NewMediaForm from '../NewMediaForm/NewMediaForm';
 import SearchForm from '../SearchForm/SearchForm';
 import MediaIndex from '../MediaIndex/MediaIndex';
 
+// HOME COMPONENT:
+// Displays gay news and acts as a launchpad for all other components.
 
 class Home extends Component {
     constructor(props){
@@ -17,6 +18,7 @@ componentDidMount = () => {
       this.fetchNews();
     }
 
+    // Need to refine gay search and create a variable that subs in today's date into the request URL
     fetchNews = async () => {
       var url = 'https://newsapi.org/v2/everything?' +
           'q=gay&' +
@@ -31,24 +33,22 @@ componentDidMount = () => {
       })
     }
    
-    
-
     showTodaysNews = () => {
       return this.state.news.map((article) => 
         <div>
-           <p>{article.title}</p>
+           <p key={article._id}>{article.title}</p>
         </div>
       )
     }
+
+
+   
+
 
   render(){
     const show = this.showTodaysNews();
     return (
       <div className="App">
-  
-          <h1>What's Gay Today:</h1>
-
-          {show}
 
           <p>Queer Rex is a carefully-curated selection of the best queer media available today,
             recommeneded by people who crave representation just as much as you do. Type in a search
@@ -60,15 +60,11 @@ componentDidMount = () => {
   
           <hr></hr>
   
-          <p>Do you have some excellent queer content to reccommend? 
-          Contribute to the collection by filling out the form below</p> 
-  
-          <NewMediaForm/>
-  
-          <hr></hr>
-  
           <MediaIndex/>
   
+          <h1>What's Gay Today:</h1>
+
+          {show}
   
       </div>
     )
