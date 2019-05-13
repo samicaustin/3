@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Media = require('../mediaModel');
 
-// SHOW ROUTE
+// INDEX ROUTE
 router.get('/', async (req, res) => {
     try {
         const foundAllMedia = await Media.find();
@@ -10,9 +10,21 @@ router.get('/', async (req, res) => {
             media: foundAllMedia
         })
     } catch (err) {
-        console.log(`get route hit`)
+        console.log(err)
     }
 });
+
+// // SHOW ROUTE
+// router.get('/:id', async (req, res) => {
+//     try {
+//         const foundOneMedia = await Media.findById(req.params.id);
+//         res.render('showone.ejs', {
+//             media: foundOneMedia
+//         })
+//     } catch (err) {
+//         console.log(`get route hit`)
+//     }
+// });
 
 // NEW ROUTE
 router.get('/new', (req, res) => {
@@ -61,9 +73,6 @@ router.put('/:id', async (req, res) => {
     const mediaToEdit = await Media.findByIdAndUpdate(req.params.id, req.body, {new: true});
    
     mediaToEdit.save();
-
-
-
     console.log(mediaToEdit, "UPDATED!");
     res.redirect('/admin');
   } catch (err) {

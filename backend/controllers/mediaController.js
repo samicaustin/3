@@ -3,7 +3,9 @@ const router = express.Router();
 const Media = require('../mediaModel');
 
 
-// SHOW ROUTE for react
+// ROUTES TO COMMUNICATE WITH FRONTEND!!!
+
+// SHOW ALL ROUTE
 router.get('/', async (req, res) => {
     try {
         const foundAllMedia = await Media.find();
@@ -11,19 +13,23 @@ router.get('/', async (req, res) => {
             status: 200,
             data: foundAllMedia
         });
-        res.render('show.ejs', {
-            media: foundAllMedia
-        })
     } catch (err) {
         console.log(`get route hit`)
     }
 });
 
-// NEW ROUTE
-router.get('/new', (req, res) => {
-    console.log('new page');
-    res.render('new.ejs')
-})
+// SHOW ONE ROUTE
+router.get('/:id', async (req, res) => {
+    try {
+        const foundOneMedia = await Media.findById(req.params.id);
+        res.json({
+            status: 200,
+            data: foundOneMedia
+        });
+    } catch (err) {
+        console.log(`get route hit`)
+    }
+});
 
 // CREATE ROUTE
 router.post('/', async (req, res) => {
@@ -34,23 +40,11 @@ router.post('/', async (req, res) => {
             req.body.approved  = false;
         }
         const newMedia = await Media.create(req.body);
-
-        console.log(newMedia);
-
-        res.redirect('/');
-    } catch(err){
-        console.log(err)
-    }
-});
-
-// EDIT ROUTE
-router.get('/:id/edit', async (req,res) => {
-    try {
-        const editMedia = await Media.findById(req.params.id);
-        res.render('edit.ejs', {
-            media: editMedia
+        res.json({
+            status: 200,
+            data: newMedia
         });
-    } catch (err) {
+    } catch(err){
         console.log(err)
     }
 });
@@ -67,10 +61,10 @@ router.put('/:id', async (req, res) => {
    
     mediaToEdit.save();
 
-
-
-    console.log(mediaToEdit, "UPDATED!");
-    res.redirect('/');
+    res.json({
+        status: 200,
+        data: mediaToEdit
+    });
   } catch (err) {
       console.log(err)
   }
@@ -81,8 +75,10 @@ router.delete('/:id', async (req, res) => {
     try {
         console.log(req.params.id);
         const mediaToDelete = await Media.findByIdAndRemove(req.params.id);
-        console.log(mediaToDelete);
-        res.redirect('/');
+        res.json({
+            status: 200,
+            data: mediaToDelete
+        });
     } catch(err) {
         console.log(err)
     }

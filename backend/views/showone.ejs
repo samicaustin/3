@@ -8,19 +8,11 @@
 </head>
 <body>
 
-<h1>SHOW</h1>
+<h1>SHOW ONE</h1>
 
-<form action = "/admin/new" method = "GET">
-    <input type = "submit" value = "NEW"/>
-</form>
-
-<ul>
-    <% for(i = 0; i < media.length; i++){%>
-
-        <li>
             APPROVED: <b><%=media[i].approved%></b><br>
 
-            TITLE: <a href="/admin/<%=media[i]._id%>"><%=media[i].title%></a><br>
+            TITLE: <b><%=media[i].title%></b><br>
 
             TYPE: <b><%=media[i].type%></b><br>
 
@@ -37,10 +29,11 @@
              <form action="/admin/<%=media[i]._id%>?_method=DELETE" method="post">
                 <button type="submit">Delete</button>
             </form>
-        </li>
 
-    <% } %>
-</ul>
-    
 </body>
 </html>
+
+
+
+           
+        

@@ -19,7 +19,7 @@ app.use(morgan('short'));
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-app.use('/', mediaController);
+app.use('/media', mediaController);
 app.use('/admin', adminController);
 
 
