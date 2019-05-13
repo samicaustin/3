@@ -12,15 +12,7 @@ A carefully-curated, ever-growing collection of the best queer media.
         4. description
         5. imageUrl
         6. yearCreated
-            
-        NON-REQUIRED PROPS:
-        + link
-        + keywords
-        + forFansOf
-        + accessibility (captions available?)
-        + triggerWarnings
-        + findOn (aka where to find/stream esp. w/shows and movies)
-
+      
     - Post, get, update, and delete routes
 
     - Stream of today's queer news from NewsAPI
