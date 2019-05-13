@@ -7,7 +7,10 @@ const Media = require('./mediaModel');
 router.get('/', async (req, res) => {
     try {
         const foundAllMedia = await Media.find();
-        console.log(foundAllMedia);
+        res.json({
+            status: 200,
+            data: foundAllMedia
+        });
         res.render('show.ejs', {
             media: foundAllMedia
         })

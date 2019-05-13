@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+
 import '../App.css';
 
 class MediaIndex extends Component {
@@ -14,29 +14,40 @@ class MediaIndex extends Component {
         this.getAllMedia();
     }
 
-    async getAllMedia(){
-        console.log(process.env.REACT_APP_BACKEND, 'this is the special var');
-        const media = await fetch(`${process.env.REACT_APP_BACKEND}/media`);
-        const mediaJSON = await media.json();
-        console.log(mediaJSON);
-        this.setState({
-            media: mediaJSON
-        })
+    getAllMedia = async () => {
+        try {
+            const response = await fetch(`http://localhost:3000/secret`);
+
+            console.log(response);
+
+            if (response.status !== 200){
+                // http errors need the below
+                throw Error(response.statusText);
+            }
+
+            const mediaJSON = await response.json();
+           
+            this.setState({
+                media: mediaJSON.data
+            });
+            console.log(this.state.media, 'media state!!!!');
+
+        } catch(err) {
+            console.log(err)
+        }
     };
 
-
-
-
-
-
-
     render(){
+        const mediaList = this.state.media.map((item) => {
+                return <div >{item.title}</div>
+            }
+            )
+        
         return (
             <div className="App">
               
               <h1>Recommendations for You:</h1>
-        
-        
+                    {mediaList}
             </div>
           );
     }
