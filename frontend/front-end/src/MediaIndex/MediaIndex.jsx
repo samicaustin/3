@@ -16,9 +16,7 @@ class MediaIndex extends Component {
 
     getAllMedia = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/`);
-
-            console.log(response);
+            const response = await fetch(`http://localhost:3000/media`);
 
             if (response.status !== 200){
                 // http errors need the below
@@ -30,8 +28,7 @@ class MediaIndex extends Component {
             this.setState({
                 media: mediaJSON.data
             });
-            console.log(this.state.media, 'media state!!!!');
-
+            
         } catch(err) {
             console.log(err)
         }
