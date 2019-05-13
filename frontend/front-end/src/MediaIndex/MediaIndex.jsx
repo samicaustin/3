@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import NewMediaForm from '../NewMediaForm/NewMediaForm'
+import NewMediaForm from '../NewMediaForm/NewMediaForm';
+import SearchForm from '../SearchForm/SearchForm';
 import '../App.css';
 
 
 // MEDIA INDEX COMPONENT
 // Fetches media from backend and displays it
 // Needs to have search/filter capability at some point too
-// Where the ROUTES will live
 
 class MediaIndex extends Component {
     constructor(props){
@@ -40,6 +40,8 @@ class MediaIndex extends Component {
         }
     };
 
+    // CREATE ROUTE
+    // Why does the browser need to be refreshed in order to display newly created media?
     handleSubmit = async (formData) => {
         console.log(2,JSON.stringify(formData));
         const newMedia = await fetch('http://localhost:3000/media', {
@@ -59,6 +61,14 @@ class MediaIndex extends Component {
     }
 
 
+    handleSearch = async (search) => {
+        console.log(search);
+        this.setState({
+            media: null
+        });
+        const searchMedia = await fetch('')
+    }
+
 
     render(){
         const mediaList = this.state.media.map((item) => {
@@ -74,7 +84,13 @@ class MediaIndex extends Component {
         return (
             <div className="App">
 
-              <h1>Recommendations for You:</h1>
+                
+                
+            <SearchForm handleSearch = {this.handleSearch}/>
+
+            <hr></hr>
+
+            <h1>Recommendations for You:</h1>
 
                     <ul>
                         {mediaList}

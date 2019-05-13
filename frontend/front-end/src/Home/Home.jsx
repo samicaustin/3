@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../App.css';
-import SearchForm from '../SearchForm/SearchForm';
 import MediaIndex from '../MediaIndex/MediaIndex';
 
 // HOME COMPONENT:
@@ -54,9 +53,6 @@ componentDidMount = () => {
             recommeneded by people who crave representation just as much as you do. Type in a search
             word below to find your new favorite book, poem, or movie.</p>
   
-          <hr></hr>
-  
-          <SearchForm/>
   
           <hr></hr>
   

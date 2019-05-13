@@ -9,16 +9,26 @@ class SearchForm extends Component {
         }
     }
 
-
+    handleChange = (e) => {
+        e.preventDefault();
+        this.setState({
+           search: e.currentTarget.value
+        });
+        console.log("handleChange");
+    }
 
     render(){
         return(
             <div>
                 <h3>Search, Search, Baby</h3>
 
-                <form>
-                    <input type="text" name="search" placeholder="try 'book'"/>
-                    <input type="submit"/>
+                <form onSubmit = {(e) => {
+                    e.preventDefault();
+                    e.target.reset();
+                    this.props.handleSearch(this.state);
+                }}>
+                    <input type="text" name="search" placeholder="try 'book'" onChange = {this.handleChange}/>
+                    <input type="submit" onSubmit = {this.props.handleSearch}/>
                 </form>
 
             </div>

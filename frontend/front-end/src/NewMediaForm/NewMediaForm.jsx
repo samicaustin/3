@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import '../App.css';
 
 class NewMediaForm extends Component {
@@ -21,8 +22,6 @@ class NewMediaForm extends Component {
         console.log(this.state);
     }
 
-    
-
     render(){
         return(
 
@@ -42,7 +41,6 @@ class NewMediaForm extends Component {
                     this.props.handleSubmit(this.state);
 
                 }}>
-
                     Title: <input type="text" name="title" onChange = {this.handleChange}/>
                     Type: <input type="text" name="type" onChange = {this.handleChange}/>
                     Creator: <input type="text" name="creator" onChange = {this.handleChange}/>
@@ -50,15 +48,11 @@ class NewMediaForm extends Component {
                     Image URL: <input type="text" name="imageUrl" onChange = {this.handleChange}/>
 
                     <input type = "submit" value="submit"></input>
-                    
                 </form>
 
             </div>
-
-        )
-            
+        )       
     }
-
 }
 
 export default NewMediaForm;
