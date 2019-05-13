@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Media = require('./mediaModel');
+const Media = require('../mediaModel');
 
 
-// SHOW ROUTE
+// SHOW ROUTE for react
 router.get('/', async (req, res) => {
     try {
         const foundAllMedia = await Media.find();
@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
 
         console.log(newMedia);
 
-        res.redirect('/secret');
+        res.redirect('/');
     } catch(err){
         console.log(err)
     }
@@ -70,7 +70,7 @@ router.put('/:id', async (req, res) => {
 
 
     console.log(mediaToEdit, "UPDATED!");
-    res.redirect('/secret');
+    res.redirect('/');
   } catch (err) {
       console.log(err)
   }
@@ -82,7 +82,7 @@ router.delete('/:id', async (req, res) => {
         console.log(req.params.id);
         const mediaToDelete = await Media.findByIdAndRemove(req.params.id);
         console.log(mediaToDelete);
-        res.redirect('/secret');
+        res.redirect('/');
     } catch(err) {
         console.log(err)
     }

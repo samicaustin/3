@@ -10,7 +10,7 @@
 
 <h1>SHOW</h1>
 
-<form action = "/secret/new" method = "GET">
+<form action = "/admin/new" method = "GET">
     <input type = "submit" value = "NEW"/>
 </form>
 
@@ -30,11 +30,11 @@
 
             IMAGE: <img src="<%=media[i].type%>"/><br>
 
-            <form action="/secret/<%=media[i]._id%>/edit" method="get">
+            <form action="/admin/<%=media[i]._id%>/edit" method="get">
                 <button type="submit">Edit</button>
             </form>
 
-             <form action="/secret/<%=media[i]._id%>?_method=DELETE" method="post">
+             <form action="/admin/<%=media[i]._id%>?_method=DELETE" method="post">
                 <button type="submit">Delete</button>
             </form>
         </li>

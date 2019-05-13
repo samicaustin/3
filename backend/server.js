@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const mediaController = require('./mediaController');
+const mediaController = require('./controllers/mediaController');
+const adminController = require('./controllers/adminController');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -18,8 +19,8 @@ app.use(morgan('short'));
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-app.use('/secret', mediaController);
-
+app.use('/', mediaController);
+app.use('/admin', adminController);
 
 
 const port = 3000;

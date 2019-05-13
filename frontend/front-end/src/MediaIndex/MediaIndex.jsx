@@ -16,7 +16,7 @@ class MediaIndex extends Component {
 
     getAllMedia = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/secret`);
+            const response = await fetch(`http://localhost:3000/`);
 
             console.log(response);
 
@@ -39,7 +39,12 @@ class MediaIndex extends Component {
 
     render(){
         const mediaList = this.state.media.map((item) => {
-                return <div >{item.title}</div>
+                return (<li key={item._id}>
+                <a href="#">{item.title} </a><br></br>
+                by {item.creator}
+                
+                
+                </li>)
             }
             )
         
@@ -47,7 +52,9 @@ class MediaIndex extends Component {
             <div className="App">
               
               <h1>Recommendations for You:</h1>
-                    {mediaList}
+                    <ul>
+                        {mediaList}
+                    </ul>
             </div>
           );
     }
